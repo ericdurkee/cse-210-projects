@@ -14,19 +14,16 @@ public abstract class Activity
 
     public int GetMinutes() => _minutes;
 
-    // Virtual methods to be overridden in derived classes
     public abstract double GetDistance();
     public abstract double GetSpeed();
     public abstract double GetPace();
 
-    // Summary method
     public virtual string GetSummary()
     {
-        return $"{_date:dd MMM yyyy} {GetType().Name} ({_minutes} min) - Distance: {GetDistance():0.0} km, Speed: {GetSpeed():0.0} kph, Pace: {GetPace():0.0} min per km";
+        return $"{_date:dd MMM yyyy} {GetType().Name} ({_minutes} min) - Distance: {GetDistance():0.0} mile, Speed: {GetSpeed():0.0} mph, Pace: {GetPace():0.0} min per mile";
     }
 }
 
-// Running activity class
 public class Running : Activity
 {
     private double _distance;
@@ -43,7 +40,6 @@ public class Running : Activity
     public override double GetPace() => GetMinutes() / GetDistance();
 }
 
-// Cycling activity class
 public class Cycling : Activity
 {
     private double _speed;
@@ -60,7 +56,6 @@ public class Cycling : Activity
     public override double GetPace() => 60 / GetSpeed();
 }
 
-// Swimming activity class
 public class Swimming : Activity
 {
     private int _laps;
@@ -77,16 +72,15 @@ public class Swimming : Activity
     public override double GetPace() => GetMinutes() / GetDistance();
 }
 
-// Main program class
 public class Program
 {
     public static void Main(string[] args)
     {
         List<Activity> activities = new List<Activity>
         {
-            new Running(new DateTime(2022, 11, 3), 30, 4.8),
-            new Cycling(new DateTime(2022, 11, 3), 45, 15.0),
-            new Swimming(new DateTime(2022, 11, 3), 25, 20)
+            new Running(new DateTime(2022, 11, 3), 15, 2.5),
+            new Cycling(new DateTime(2022, 11, 3), 40, 15.0),
+            new Swimming(new DateTime(2022, 11, 3), 20, 15)
         };
 
         foreach (var activity in activities)
@@ -95,3 +89,4 @@ public class Program
         }
     }
 }
+
